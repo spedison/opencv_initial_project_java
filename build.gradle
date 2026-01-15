@@ -42,9 +42,19 @@ run{
  jvmArgs += ["--enable-native-access=ALL-UNNAMED"]
 }
 
+String mainClassName = 'org.example.App'
+
 application {
     // Define the main class for the application.
-    mainClass = 'org.example.App'
+    mainClass = mainClassName
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': mainClassName
+        )
+    }
 }
 
 tasks.named('test') {
@@ -76,5 +86,8 @@ tasks.register("runVideo", JavaExec) {
     jvmArgs += ["-Djava.library.path="+baseOpenCVLib]
     jvmArgs += ["--enable-native-access=ALL-UNNAMED"]
 }
+
+// For execute manually:
+// java --enable-native-access=ALL-UNNAMED -Djava.library.path=/usr/lib/java -cp "/usr/lib/java/opencv.jar:build/libs/app.jar" org.example.App r
 
 
