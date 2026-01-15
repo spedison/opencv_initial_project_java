@@ -52,7 +52,8 @@ application {
 jar {
     manifest {
         attributes(
-                'Main-Class': mainClassName
+                'Main-Class': mainClassName,
+                'Class-Path': '/usr/lib/java/opencv.jar'
         )
     }
 }
